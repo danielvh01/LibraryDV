@@ -4,8 +4,14 @@ using System.Text;
 
 namespace LibraryDV
 {
-    class Node
+    public class Node<T> where T : IComparable
     {
-
+        public Node<T> next = null;
+        public Node<T> prev = null;
+        public T value;
+        public Node(T value = default)
+        {
+            
+        }
     }
 }
