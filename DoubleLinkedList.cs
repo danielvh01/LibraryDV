@@ -96,6 +96,73 @@ namespace LibraryDV
             }
         }
 
+        void DeleteAtStart() {
+            if (Length > 0) {
+                if (Length == 1)
+                {
+                    head = null;
+                    tail = null;
+                }
+                else {
+                    head = head.next;
+                    head.prev = null;
+                }
+                Length--;
+            }
+        }
+
+        void DeleteAtEnd() {
+            if (Length > 0)
+            {
+                if (Length == 1)
+                {
+                    head = null;
+                    tail = null;
+                }
+                else
+                {
+                    tail = tail.prev;
+                    tail.next = null;
+                }
+                Length--;
+            }
+        }
+
+        public void Delete(int position) {
+            if (Length > 0)
+            {
+                if (Length == 1)
+                {
+                    head = null;
+                    tail = null;
+                    Length--;
+                }
+                else {
+                    if (position == 0) {
+                        DeleteAtStart();
+                    }
+                    else if (position >= Length -1) {
+                        DeleteAtEnd();
+                    }
+                    else {
+                        Node<T> prev = head;
+                        Node<T> node = head.next;
+                        int cont = 0;
+                        while (cont < position - 1) {
+                            prev = node;
+                            node = node.next;
+                            cont++;
+                        }
+                        prev.next = node.next;
+                        if (node.next != null)
+                        {
+                            node.next.prev = prev;
+                        }
+                        Length--;
+                    }
+                }
+            }
+        }
 
     }
 }
